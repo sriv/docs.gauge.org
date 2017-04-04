@@ -84,6 +84,28 @@ The upper limit to the number of open files is low.
 Increase the upper limit by adding a command ``ulimit -S -n 2048`` to you ~/.profile.
 Don't forget to re-login for the changes to take effect.
 
+Why can't gradle execute gauge specs, despite adding a task as per the document?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: console
+
+    * What went wrong:
+    A problem occurred evaluating root project 'INDYGauge'.
+    > Could not get unknown property 'GaugeTask' for root project 'INDYGauge' of type org.gradle.api.Project.
+
+This can happen when gradle is unable to recognize the GaugeTask. Try using the fully qualified name for GaugeTask as below:
+.. code-block:: console
+  
+  task customGauge(type: com.thoughtworks.gauge.gradle.GaugeTask) {
+    gauge {
+        specsDir = 'specs'
+        env = 'default'
+        tags = 'tag1'
+        inParallel = true
+        nodes = 4
+        additionalFlags = '--verbose'
+    }
+  }
+
 IDE
 ---
 
