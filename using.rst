@@ -424,6 +424,8 @@ Tag expressions
 
 Tags can be selected using expressions. Examples:
 
+.. note:: ``!`` is a reserved bash character, you may need to escape it using ``\!``
+
 ================================== ===============================================================
 Tags                               Selects specs/scenarios that
 ================================== ===============================================================
